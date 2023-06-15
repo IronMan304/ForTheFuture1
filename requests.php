@@ -1,10 +1,67 @@
+<style>
+.column {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(255, 255, 255, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.column:hover {
+  transform: translateY(-5px);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.friend-request {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(255, 255, 255, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.friend-request:hover {
+  transform: translateY(-5px);
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.btn {
+  padding: 5px 15px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ddd;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #ccc;
+}
+</style>
+
 <?php
 include("includes/header.php"); //Header 
 ?>
 
 <div class="main_column column" id="main_column">
 
-	<h4>Friend Requests</h4>
+	<h4 class="title">Friend Requests</h4>
 
 	<?php  
 
@@ -17,6 +74,7 @@ include("includes/header.php"); //Header
 			$user_from = $row['user_from'];
 			$user_from_obj = new User($con, $user_from);
 
+			echo '<div class="friend-request">';
 			echo $user_from_obj->getFirstAndLastName() . " sent you a friend request!";
 
 			$user_from_friend_array = $user_from_obj->getFriendArray();
@@ -36,19 +94,14 @@ include("includes/header.php"); //Header
 				header("Location: requests.php");
 			}
 
-			?>
-			<form action="requests.php" method="POST">
-				<input type="submit" name="accept_request<?php echo $user_from; ?>" id="accept_button" value="Accept">
-				<input type="submit" name="ignore_request<?php echo $user_from; ?>" id="ignore_button" value="Ignore">
-			</form>
-			<?php
-
-
+			echo '<div class="btn-container">
+					<form action="requests.php" method="POST">
+						<input type="submit" name="accept_request' . $user_from . '" class="btn" value="Accept">
+						<input type="submit" name="ignore_request' . $user_from . '" class="btn" value="Ignore">
+					</form>
+				  </div>';
+			echo '</div>';
 		}
-
 	}
-
 	?>
-
-
 </div>

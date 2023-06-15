@@ -20,34 +20,167 @@ else {
 <html>
 <head>
 	
-	<title>Welcome to Swirlfeed</title>
+	<title>Welcome to Norsocmed</title>
 
 	
 
-	<!-- Javascript -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="assets/js/bootstrap.js"></script>
-	<script src="assets/js/bootbox.min.js"></script>
-	<script src="assets/js/demo.js"></script>
-	<script src="assets/js/jquery.jcrop.js"></script>
-	<script src="assets/js/jcrop_bits.js"></script>
 
 
 	
-	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-<link rel="stylesheet" type="text/css" href="css/style.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+
+<link rel="stylesheet" type="text/css" href="css/style.css"> <!--navbar-->
+<link rel="stylesheet" type="text/css" href="css/profile.css"> 
+
+
 
 <!-- CSS -->
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	
-	<link rel="stylesheet" href="assets/css/jquery.Jcrop.css" type="text/css" />
+
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/> <!-- for profile -->
 
 	
 </head>
 <body>
+
+<style>
+	/* Navbar */
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  box-shadow: 6px 6px 12px rgba(155, 166, 179, 0.3), -6px -6px 12px rgba(255, 255, 255, 0.7);
+}
+
+.nav-left h2 {
+  color: #333;
+  font-family: 'Arial', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(155, 166, 179, 0.3);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right .search-box {
+  position: relative;
+}
+
+.nav-right input[type="text"] {
+  width: 200px;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  box-shadow: inset 4px 4px 10px rgba(155, 166, 179, 0.3), inset -4px -4px 10px rgba(255, 255, 255, 0.7);
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.nav-right input[type="text"]:focus {
+  box-shadow: inset 6px 6px 12px rgba(155, 166, 179, 0.3), inset -6px -6px 12px rgba(255, 255, 255, 0.7);
+}
+
+.nav-right .search_results_footer_empty {
+  display: none;
+}
+
+.nav-right .search_results {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #f2f2f2;
+  box-shadow: 6px 6px 12px rgba(155, 166, 179, 0.3), -6px -6px 12px rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  padding: 5px;
+  z-index: 1;
+}
+
+.nav-right .search_results a {
+  display: block;
+  padding: 8px;
+  color: #333;
+  text-decoration: none;
+}
+
+.nav-right .search_results a:hover {
+  background-color: #ddd;
+}
+
+.nav-right .settings-menu {
+  position: relative;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.nav-right .settings-menu-inner {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  width: 200px;
+  background-color: #f2f2f2;
+  box-shadow: 6px 6px 12px rgba(155, 166, 179, 0.3), -6px -6px 12px rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  padding: 10px;
+  display: none;
+  z-index: 1;
+}
+
+.nav-right .settings-menu-inner hr {
+  margin: 5px 0;
+}
+
+.nav-right .settings-links {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.nav-right .settings-links a {
+  margin-left: 5px;
+  color: #333;
+  text-decoration: none;
+}
+
+.nav-right .settings-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-right .settings-menu:hover .settings-menu-inner {
+  display: block;
+}
+
+/* Title Icons */
+.nav-left h2 img,
+.nav-right a img,
+.nav-user-icon img {
+  border-radius: 50%;
+  background-color: #f2f2f2;
+  box-shadow: 6px 6px 12px rgba(155, 166, 179, 0.3), -6px -6px 12px rgba(255, 255, 255, 0.7);
+}
+
+.nav-left h2 img:hover,
+.nav-right a img:hover,
+.nav-user-icon img:hover {
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3), -6px -6px 12px rgba(255, 255, 255, 0.7);
+}
+
+
+</style>
 	
 <?php
 			
@@ -67,107 +200,97 @@ else {
 	<nav>
 	
 			<div class="nav-left">
-			
-			<a href="index.php"><img src="images/logo.png" class="logo"></a>
-	
+							
+							<a href="index.php" style="text-decoration: none;">
+							<h2 style="color: #4d8bf5; font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold;">NORSOCMED</h2>
+				</a>
+
+					
 
 
 				<ul>
+				
+					
 				<li>
-				<a href="javascript:void(0);" onclick="getDropdownData('<?php echo $userLoggedIn; ?>', 'notification')">
-				<img src="images/notification.png">
-				<?php
-				if($num_notifications > 0)
-				 echo '<span class="notification_badge" id="unread_notification">' . $num_notifications . '</span>';
-				?>
-			</a>
-				</li>
-					
-					<li>
 					<a href="requests.php">
-					<img src="images/notification.png">
-				<?php
+						<?php
 				if($num_requests > 0)
-				 echo '<span class="notification_badge" id="unread_requests">' . $num_requests . '</span>';
+				 echo '<span class="not" id="unread_requests">' . $num_requests . '</span>';
 				?>
-			</a>
-					</li>
+				<style>.not{
 					
-				</ul>
-			</div>
-			<div class="nav-right">
-
-
-
-			<div class="search-box">
-
-<form action="search.php" method="GET" name="search_form">
-	
-	<input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">
-
-	
-
-</form>
-
-
-
-<div class="search_results_footer_empty">
-</div>
-
-
-
-</div>
-
-
-				<div class="nav-user-icon online" onclick="settingsMenuToggle();">
-					<img src="images/profile-pic.png">
+						padding: 3px 7px;
+		font-size: 12px;
+		font-weight: 700;
+		line-height: 1;
+		color: #fff;
+		text-align: center;
+		white-space: nowrap;
+		vertical-align: baseline;
+		background-color: red;
+		border-radius: 10px;
+		position: absolute;
+		
+		top: 4px;
+					}
+					</style>
+						<img src="images/friends.png">
+					
+				</a>
+						</li>
+						
+					</ul>
 				</div>
-			</div>
+				<div class="nav-right">
 
-			<div class="settings-menu">
-				<div id="dark-btn">
-					<span></span>
+
+
+				<div class="search-box">
+
+	<form action="search.php" method="GET" name="search_form">
+		
+		<input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">
+
+		
+
+	</form>
+
+	<div class="search_results_footer_empty">
+	<div class="search_results">
 				</div>
-				<div class="settings-menu-inner">
-					<div class="user-profile">
-						<img src="images/profile-pic.png">
-						<div>
-							<p><?php echo $user['first_name']; ?></p>
-							<a href="<?php echo $userLoggedIn; ?>">See Your Profile</a>
+	</div>
+
+	</div>
+
+
+					<div class="nav-user-icon online" onclick="settingsMenuToggle();">
+						<img src="public/upload/no_image.jpg">
+					</div>
+				</div>
+
+				<div class="settings-menu">
+					
+					<div class="settings-menu-inner">
+						<div class="user-profile">
+							<img src="public/upload/no_image.jpg">
+							<div>
+								<p><?php echo $user['first_name']; ?></p>
+								<a href="<?php echo $userLoggedIn; ?>">See Your Profile</a>
+							</div>
+						</div>
+						<hr>
+						
+						<hr>
+
+					
+					
+						<div class="settings-links">
+							<img src="images/logout.png" class="settings-icon">
+							<a href="includes/handlers/logout.php">Logout</a>
+							<img src="images/arrow.png" width="10px">
 						</div>
 					</div>
-					<hr>
-					<div class="user-profile">
-						<img src="images/feedback.png">
-						<div>
-							<p>Give Feedback</p>
-							<a href="#">Help us to improve the new design</a>
-						</div>
-					</div>
-					<hr>
-
-					<div class="settings-links">
-						<img src="images/setting.png" class="settings-icon">
-						<a href="settings.php">Settings & Privacy</a>
-						<img src="images/arrow.png" width="10px">
-					</div>
-					<div class="settings-links">
-						<img src="images/help.png" class="settings-icon">
-						<a href="#">Help & Support</a>
-						<img src="images/arrow.png" width="10px">
-					</div>
-					<div class="settings-links">
-						<img src="images/display.png" class="settings-icon">
-						<a href="#">Display & Accessibility</a>
-						<img src="images/arrow.png" width="10px">
-					</div>
-					<div class="settings-links">
-						<img src="images/logout.png" class="settings-icon">
-						<a href="includes/handlers/logout.php">Logout</a>
-						<img src="images/arrow.png" width="10px">
-					</div>
 				</div>
-			</div>
 	</nav>
 
 
@@ -223,4 +346,4 @@ else {
 	</script>
 
 <script src="js/script.js"></script>
-	<div class="wrapper">
+	

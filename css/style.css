@@ -1,9 +1,4 @@
-*{
-	margin: 0;
-	padding: 0;
-	font-family: 'poppins',sans-serif;
-	box-sizing: border-box;
-}
+
 :root{
 	--body-color: #efefef;
 	--nav-color: #1876f2;
@@ -16,21 +11,21 @@
 	--bg-color: #000;
 }
 
-body{
-	background: var(--body-color);
-	transition: background 0.3s;
-}
 
-nav{
+
+nav {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	background: var(--nav-color);
 	padding: 5px 5%;
-	position: sticky;
+	position: fixed; /* Change position to "fixed" */
 	top: 0;
+	left: 0; /* Add "left: 0" to ensure it sticks to the left side of the viewport */
+	width: 100%; /* Add "width: 100%" to stretch the navbar across the viewport */
 	z-index: 100;
-}
+  }
+  
 .logo{
 	width: 160px;
 	margin-right: 45px;
@@ -462,4 +457,6 @@ nav{
 	background:#666;
 }
 
+
+/* <!-- -------------------------------------------------  */
 

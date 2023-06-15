@@ -39,8 +39,6 @@ if(isset($_POST['post_message'])) {
               $('" . $link ."').tab('show');
           });
         </script>";
-
-
 }
 
  ?>
@@ -53,15 +51,22 @@ if(isset($_POST['post_message'])) {
 
  	</style>
 	
- 	<div class="profile_left">
- 		<img src="<?php echo $user_array['profile_pic']; ?>">
+  <!-- profile pic -->
+  <div class="wrapper">
+ 	 <div class="img-area">
+      <div class="inner-area">
+        <img src="public/upload/no_image.jpg" alt="">
+      </div>
+    </div>
+    <div class="icon arrow"><i class="fas fa-arrow-left"></i></div>
+    <div class="icon dots"><i class="fas fa-ellipsis-v"></i></div>
+    <div class="name"><?php echo $user_array['first_name'] . ' ' . $user_array['last_name']; ?></div>
 
- 		<div class="profile_info">
- 			<p><?php echo "Posts: " . $user_array['num_posts']; ?></p>
- 			<p><?php echo "Likes: " . $user_array['num_likes']; ?></p>
- 			<p><?php echo "Friends: " . $num_friends ?></p>
- 		</div>
+    
 
+
+    
+    <!-- //If mang add friend ka -->
  		<form action="<?php echo $username; ?>" method="POST">
  			<?php 
  			$profile_user_obj = new User($con, $username); 
@@ -74,95 +79,73 @@ if(isset($_POST['post_message'])) {
  			if($userLoggedIn != $username) {
 
  				if($logged_in_user_obj->isFriend($username)) {
- 					echo '<input type="submit" name="remove_friend" class="danger" value="Remove Friend"><br>';
+ 					echo 
+           '<div class="buttons">
+           <button type="submit" name="remove_friend" class="danger"> Remove Friend </button>
+         </div>';
  				}
  				else if ($logged_in_user_obj->didReceiveRequest($username)) {
- 					echo '<input type="submit" name="respond_request" class="warning" value="Respond to Request"><br>';
+ 					echo 
+           '<div class="buttons">
+           <button type="submit" name="respond_request" class="warning"> Respond to Request</button>
+         </div>';
  				}
  				else if ($logged_in_user_obj->didSendRequest($username)) {
- 					echo '<input type="submit" name="" class="default" value="Request Sent"><br>';
+          echo '<input type="submit" name="" class="default blue-btn" value="Request Sent"><br>';
+
  				}
- 				else 
- 					echo '<input type="submit" name="add_friend" class="success" value="Add Friend"><br>';
+       
+ 				else {
+          echo '<div class="buttons">
+                  <button type="submit" name="add_friend" class="success"> Add Friend </button>
+                </div>';
+        }
+        
 
  			}
 
  			?>
  		</form>
- 		<input type="submit" class="deep_blue" data-toggle="modal" data-target="#post_form" value="Post Something">
 
-    <?php  
+     <div class="about"> <?php  
     if($userLoggedIn != $username) {
       echo '<div class="profile_info_bottom">';
-        echo $logged_in_user_obj->getMutualFriends($username) . " Mutual friends";
+        echo "<br>". $logged_in_user_obj->getMutualFriends($username) . " Mutual friends";
       echo '</div>';
     }
 
 
-    ?>
+    ?></div>
+    <div class="social-icons">
+      <a href="#" class="fb"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="insta"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="yt"><i class="fab fa-youtube"></i></a>
+    </div>
+    
+     <div class="social-share">
+ 		<div class="row">
+ 			<?php echo "Posts: " . $user_array['num_posts']; ?>
+  </div>
+  <div class="row">
+  <i class="far fa-heart"></i>
+        <i class="icon-2 fas fa-heart"></i>
+ 			<?php echo "Likes: " . $user_array['num_likes']; ?>
+  </div>
+       <div class="row">   
+ 			<span><?php echo "Friends: " . $num_friends ?></span>
+ 		</div>
+  </div>
+
+ 	
+
+  
 
  	</div>
 
 
-	<div class="profile_main_column column">
-
-    <ul class="nav nav-tabs" role="tablist" id="profileTabs">
-      <li role="presentation" class="active"><a href="#newsfeed_div" aria-controls="newsfeed_div" role="tab" data-toggle="tab">Newsfeed</a></li>
-      
-    </ul>
-
-    <div class="tab-content">
-
-      <div role="tabpanel" class="tab-pane active" id="newsfeed_div">
-        <div class="posts_area"></div>
-        <img id="loading" src="assets/images/icons/loading.gif">
-      </div>
 
 
-      
-
-
-
-     
-
-      </div>
-
-
-    </div>
-
-
-	</div>
-
-<!-- Modal -->
-<div class="modal fade" id="post_form" tabindex="-1" role="dialog" aria-labelledby="postModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="postModalLabel">Post something!</h4>
-      </div>
-
-      <div class="modal-body">
-      	<p>This will appear on the user's profile page and also their newsfeed for your friends to see!</p>
-
-      	<form class="profile_post" action="" method="POST">
-      		<div class="form-group">
-      			<textarea class="form-control" name="post_body"></textarea>
-      			<input type="hidden" name="user_from" value="<?php echo $userLoggedIn; ?>">
-      			<input type="hidden" name="user_to" value="<?php echo $username; ?>">
-      		</div>
-      	</form>
-      </div>
-
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" name="post_button" id="submit_profile_post">Post</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <script>

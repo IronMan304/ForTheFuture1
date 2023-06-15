@@ -1,5 +1,109 @@
-<?php
+<style>
+.column {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(255, 255, 255, 0.5);
+  transition: transform 0.3s ease;
+}
 
+.column:hover {
+  transform: translateY(-5px);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-result {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1), -4px -4px 10px rgba(255, 255, 255, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.search-result:hover {
+  transform: translateY(-5px);
+}
+
+.searchPageFriendButtons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.input-btn {
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ddd;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.input-btn.danger {
+  background-color: #ff5757;
+  color: #fff;
+}
+
+.input-btn.danger:hover {
+  background-color: #ff0000;
+}
+
+.input-btn.warning {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.input-btn.warning:hover {
+  background-color: #ff9800;
+}
+
+.input-btn.default {
+  background-color: #ccc;
+  color: #333;
+}
+
+.input-btn.default:hover {
+  background-color: #999;
+}
+
+.input-btn.success {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.input-btn.success:hover {
+  background-color: #45a049;
+}
+
+.result-profile-pic {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.result-profile-pic img {
+  height: 100px;
+}
+
+.search_hr {
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+  margin-top: 20px;
+}
+</style>
+
+<?php
 include("includes/header.php");
 
 if(isset($_GET['q'])) {
@@ -24,9 +128,7 @@ else {
 		echo "You must enter something in the search box.";
 	else {
 
-
-
-		//If query contains an underscore, assume user is searching for usernames
+		//If query contains an underscore, assume the user is searching for usernames
 		if($type == "username") 
 			$usersReturnedQuery = mysqli_query($con, "SELECT * FROM users WHERE username LIKE '$query%' AND user_closed='no' LIMIT 8");
 		//If there are two words, assume they are first and last names respectively
@@ -36,7 +138,7 @@ else {
 
 			if(count($names) == 3)
 				$usersReturnedQuery = mysqli_query($con, "SELECT * FROM users WHERE (first_name LIKE '$names[0]%' AND last_name LIKE '$names[2]%') AND user_closed='no'");
-			//If query has one word only, search first names or last names 
+			//If the query has one word only, search first names or last names 
 			else if(count($names) == 2)
 				$usersReturnedQuery = mysqli_query($con, "SELECT * FROM users WHERE (first_name LIKE '$names[0]%' AND last_name LIKE '$names[1]%') AND user_closed='no'");
 			else 
@@ -51,7 +153,7 @@ else {
 
 
 		echo "<p id='grey'>Try searching for:</p>";
-		echo "<a href='search.php?q=" . $query ."&type=name'>Names</a>, <a href='search.php?q=" . $query ."&type=username'>Usernames</a><br><br><hr id='search_hr'>";
+		echo "<a href='search.php?q=" . $query ."&type=name'>Names</a>, <a href='search.php?q=" . $query ."&type=username'>Usernames</a><br><br><hr class='search_hr'>";
 
 		while($row = mysqli_fetch_array($usersReturnedQuery)) {
 			$user_obj = new User($con, $user['username']);
@@ -63,13 +165,13 @@ else {
 
 				//Generate button depending on friendship status 
 				if($user_obj->isFriend($row['username']))
-					$button = "<input type='submit' name='" . $row['username'] . "' class='danger' value='Remove Friend'>";
+					$button = "<input type='submit' name='" . $row['username'] . "' class='input-btn danger' value='Remove Friend'>";
 				else if($user_obj->didReceiveRequest($row['username']))
-					$button = "<input type='submit' name='" . $row['username'] . "' class='warning' value='Respond to request'>";
+					$button = "<input type='submit' name='" . $row['username'] . "' class='input-btn warning' value='Respond to request'>";
 				else if($user_obj->didSendRequest($row['username']))
-					$button = "<input type='submit' class='default' value='Request Sent'>";
+					$button = "<input type='submit' class='input-btn default' value='Request Sent'>";
 				else 
-					$button = "<input type='submit' name='" . $row['username'] . "' class='success' value='Add Friend'>";
+					$button = "<input type='submit' name='" . $row['username'] . "' class='input-btn success' value='Add Friend'>";
 
 				$mutual_friends = $user_obj->getMutualFriends($row['username']) . " friends in common";
 
@@ -93,39 +195,31 @@ else {
 					}
 
 				}
-
-
-
 			}
 
-			echo "<div class='search_result'>
+			echo "<div class='search-result'>
 					<div class='searchPageFriendButtons'>
-						<form action='' method='POST'>
-							" . $button . "
-							<br>
-						</form>
+							<form action='' method='POST'>
+								" . $button . "
+								<br>
+							</form>
 					</div>
 
-
-					<div class='result_profile_pic'>
+					<div class='result-profile-pic'>
 						<a href='" . $row['username'] ."'><img src='". $row['profile_pic'] ."' style='height: 100px;'></a>
 					</div>
 
-						<a href='" . $row['username'] ."'> " . $row['first_name'] . " " . $row['last_name'] . "
+					<a href='" . $row['username'] ."'> " . $row['first_name'] . " " . $row['last_name'] . "
 						<p id='grey'> " . $row['username'] ."</p>
-						</a>
-						<br>
-						" . $mutual_friends ."<br>
+					</a>
+					<br>
+					" . $mutual_friends ."<br>
 
 				</div>
-				<hr id='search_hr'>";
+				<hr class='search_hr'>";
 
 		} //End while
 	}
-
-
-	?>
-
-
+?>
 
 </div>

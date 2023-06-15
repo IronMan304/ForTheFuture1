@@ -13,7 +13,7 @@ else {
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	</head>
 <div class="user_details column">
-		<a href="<?php echo $userLoggedIn; ?>">  <img src="<?php echo $user['profile_pic']; ?>"> </a>
+		
 
 		<div class="user_details_left_right">
 			<a href="<?php echo $userLoggedIn; ?>">

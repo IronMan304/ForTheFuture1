@@ -239,6 +239,16 @@ textarea:focus {
 	position: relative;
 }
 
+.edit_button {
+	height: 22px;
+	width: 22px;
+	padding: 0;
+	float: right;
+	border-radius: 4px;
+	right: -15px;
+	position: relative;
+}
+
 
 
 .profile_main_column {
@@ -281,7 +291,7 @@ textarea:focus {
 
 .liveSearchText {
 	background-color: transparent;
-	color: #1E96CA;
+	color: #0a0c0d;
 }
 
 .liveSearchText p{
@@ -339,8 +349,23 @@ textarea:focus {
 	margin: 0;
 }
 
-.search {
-	margin: 8px 0 0 15%;
+.search{
+	background: #efefef;
+	width: 350px;
+	border-radius: 20px;
+	display: flex;
+	align-items: center;
+	padding: 0 15px;
+}
+.search img{
+	width: 18px;	
+}
+.search input{
+	width: 100%;
+	background: transparent;
+	padding: 10px;
+	outline: none;
+	border: 0;
 }
 
 .search #search_text_input {
