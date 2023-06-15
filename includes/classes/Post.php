@@ -21,7 +21,35 @@
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), -2px -2px 4px rgba(255, 255, 255, 0.5);
   }
 </style>
+<style>
+    .delete_button {
+        background-color: #e0e5ec;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 5px 5px 10px #bfc6d1,
+                    -5px -5px 10px #ffffff;
+        color: #ffffff;
+        cursor: pointer;
+        font-weight: bold;
+        padding: 10px;
+        transition: box-shadow 0.3s ease;
+        position: relative;
+    }
 
+    .delete_button::before {
+        content: "X";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 16px;
+    }
+
+    .delete_button:hover {
+        box-shadow: 2px 2px 5px #bfc6d1,
+                    -2px -2px 5px #ffffff;
+    }
+</style>
 <?php
 class Post {
 	private $user_obj;
@@ -184,10 +212,7 @@ class Post {
 				}
 
 				//Check if user who posted, has their account closed
-				$added_by_obj = new User($this->con, $added_by);
-				if($added_by_obj->isClosed()) {
-					continue;
-				}
+				
 
 				$user_logged_obj = new User($this->con, $userLoggedIn);
 				if($user_logged_obj->isFriend($added_by)){
@@ -205,7 +230,8 @@ class Post {
 					}
 
 					if($userLoggedIn == $added_by){ 
-						$delete_button = "<button class='delete_button btn-danger' id='post$id'>X</button>";
+						
+						$delete_button = "<button class='delete_button btn-danger' id='post$id'></button>";
 						$edit_button = "<button class='edit_button btn-primary' id='post$id'>edit</button>";
 					}else 
 						$delete_button = "";
@@ -216,7 +242,7 @@ class Post {
 					$user_row = mysqli_fetch_array($user_details_query);
 					$first_name = $user_row['first_name'];
 					$last_name = $user_row['last_name'];
-					$profile_pic = $user_row['profile_pic'];
+					
 
 
 					?>

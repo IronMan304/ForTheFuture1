@@ -74,6 +74,10 @@
 	/* Navbar */
 /* Navbar */
 nav {
+	position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -270,7 +274,7 @@ nav {
         </div>
     </div>
     <div class="nav-user-icon online" onclick="settingsMenuToggle();">
-        <img src="public/upload/no_image.jpg">
+        <img src="public/upload/randy.jpg">
     </div>
 </div>
 
@@ -313,15 +317,15 @@ nav {
         
         <div class="settings-menu-inner">
             <div class="user-profile">
-                <img src="public/upload/no_image.jpg">
+                <img src="public/upload/randy.jpg">
                 <div>
-                    <p><?php echo $user['first_name']; ?></p>
+                    <p><?php echo $user['first_name']." ".$user['last_name']; ?></p>
                     <a href="<?php echo $userLoggedIn; ?>">See Your Profile</a>
                 </div>
             </div>
             <hr>
             
-            <hr>
+           
             <div class="settings-links">
                 <img src="images/logout.png" class="settings-icon">
                 <a href="includes/handlers/logout.php">Logout</a>
@@ -549,8 +553,12 @@ foreach ($users as $username) {
 }
 echo '</ul>';
 ?>
-
-
+<style>.randy {
+    width: 215px; /* Set the desired width */
+    height: auto; /* Maintain aspect ratio */
+}
+</style>
+<img class="randy" src="public/upload/randy.jpg">
 					
 				</div>
 				
@@ -648,7 +656,7 @@ button:hover {
 
 				<div class="write-post-container">
 					<div class="user-profile">
-						<img src="public/upload/no_image.jpg">
+						<img src="public/upload/randy.jpg">
 						<div>
 							<p><?php echo $user['first_name'] . " " . $user['last_name'] ?></p>
 							
@@ -723,7 +731,7 @@ button:hover {
 					<h4>Advertisement</h4>
 					<a href="#">Close</a>
 				</div>
-				<img src="images/advertisement.png" class="sidebar-ads">
+				<img src="public/upload/randy.jpg" class="sidebar-ads">
 
 				<div class="sidebar-title">
 					<h4>Conversation</h4>

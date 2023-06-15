@@ -50,6 +50,7 @@ else {
 	/* Navbar */
 /* Navbar */
 nav {
+	
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -249,7 +250,7 @@ nav {
 
 	<form action="search.php" method="GET" name="search_form">
 		
-		<input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search..." autocomplete="off" id="search_text_input">
+		<input type="text" onkeyup="getLiveSearchUsers(this.value, '<?php echo $userLoggedIn; ?>')" name="q" placeholder="Search for users to add" autocomplete="off" id="search_text_input">
 
 		
 
@@ -264,7 +265,7 @@ nav {
 
 
 					<div class="nav-user-icon online" onclick="settingsMenuToggle();">
-						<img src="public/upload/no_image.jpg">
+						<img src="public/upload/randy.jpg">
 					</div>
 				</div>
 
@@ -272,7 +273,7 @@ nav {
 					
 					<div class="settings-menu-inner">
 						<div class="user-profile">
-							<img src="public/upload/no_image.jpg">
+							<img src="public/upload/randy.jpg">
 							<div>
 								<p><?php echo $user['first_name']; ?></p>
 								<a href="<?php echo $userLoggedIn; ?>">See Your Profile</a>
@@ -280,7 +281,7 @@ nav {
 						</div>
 						<hr>
 						
-						<hr>
+					
 
 					
 					

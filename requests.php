@@ -104,4 +104,22 @@ include("includes/header.php"); //Header
 		}
 	}
 	?>
+	
 </div>
+<style>
+    .image-container {
+        display: flex;
+        justify-content: center;
+        padding: 50px;
+    }
+    
+    .image-container img {
+        width: 215px; /* Set the desired width */
+        height: auto; /* Maintain aspect ratio */
+    }
+</style>
+
+<div class="image-container">
+    <img class="randy" src="public/upload/randy.jpg" alt="Randy">
+</div>
+

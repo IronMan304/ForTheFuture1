@@ -55,7 +55,7 @@ if(isset($_POST['post_message'])) {
   <div class="wrapper">
  	 <div class="img-area">
       <div class="inner-area">
-        <img src="public/upload/no_image.jpg" alt="">
+        <img src="public/upload/randy.jpg" alt="">
       </div>
     </div>
     <div class="icon arrow"><i class="fas fa-arrow-left"></i></div>
@@ -70,9 +70,7 @@ if(isset($_POST['post_message'])) {
  		<form action="<?php echo $username; ?>" method="POST">
  			<?php 
  			$profile_user_obj = new User($con, $username); 
- 			if($profile_user_obj->isClosed()) {
- 				header("Location: user_closed.php");
- 			}
+ 			
 
  			$logged_in_user_obj = new User($con, $userLoggedIn); 
 
